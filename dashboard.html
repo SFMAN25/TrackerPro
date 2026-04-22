@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | Tracker Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(rgba(17, 24, 39, 0.9), rgba(17, 24, 39, 0.9)), 
+                        url('https://files.catbox.moe/vkyqf7.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="text-gray-100 font-sans hidden" id="main-body">
+
+    <nav class="bg-black/40 backdrop-blur-md p-4 border-b border-gray-700 flex justify-between items-center sticky top-0 z-50">
+        <h1 class="text-xl font-bold text-blue-400 tracking-wider">TRACKER PRO <span class="text-xs font-light text-gray-400">V1.0</span></h1>
+        <button id="logoutBtn" class="bg-red-500/20 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/50 px-4 py-2 rounded-lg transition text-sm font-bold">تسجيل خروج</button>
+    </nav>
+
+    <div class="container mx-auto p-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-gray-900/60 backdrop-blur-md p-6 rounded-xl border border-gray-700 shadow-xl">
+                <p class="text-gray-400 text-sm">حالة المراقبة</p>
+                <h3 class="text-2xl font-bold text-green-400">Active</h3>
+            </div>
+            <div class="bg-gray-900/60 backdrop-blur-md p-6 rounded-xl border border-gray-700 shadow-xl">
+                <p class="text-gray-400 text-sm">إجمالي السجلات</p>
+                <h3 id="total-logs" class="text-2xl font-bold text-blue-400">0</h3>
+            </div>
+            <div class="bg-gray-900/60 backdrop-blur-md p-6 rounded-xl border border-gray-700 shadow-xl">
+                <p class="text-gray-400 text-sm">التحديث القادم</p>
+                <h3 class="text-2xl font-bold text-purple-400">Real-time</h3>
+            </div>
+        </div>
+
+        <div class="bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-700 overflow-hidden">
+            <div class="p-5 border-b border-gray-700 flex justify-between items-center bg-gray-800/50">
+                <h2 class="text-lg font-bold text-gray-200">سجل النشاط المجمع</h2>
+                <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded">Live Data</span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-right">
+                    <thead class="bg-gray-800/80 text-gray-400 text-sm uppercase">
+                        <tr>
+                            <th class="p-4">المنصة</th>
+                            <th class="p-4">الهدف</th>
+                            <th class="p-4">النشاط</th>
+                            <th class="p-4">الوقت والتاريخ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="logs-table-body" class="divide-y divide-gray-800">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
