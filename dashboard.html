@@ -7,53 +7,58 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background: linear-gradient(rgba(17, 24, 39, 0.9), rgba(17, 24, 39, 0.9)), 
-                        url('https://files.catbox.moe/vkyqf7.png');
+            background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.9)), 
+                        url('https://files.catbox.moe/wue92s.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
+        .glass { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px); }
     </style>
 </head>
-<body class="text-gray-100 font-sans hidden" id="main-body">
+<body class="text-gray-100 hidden" id="main-body">
 
-    <nav class="bg-black/40 backdrop-blur-md p-4 border-b border-gray-700 flex justify-between items-center sticky top-0 z-50">
-        <h1 class="text-xl font-bold text-blue-400 tracking-wider">TRACKER PRO <span class="text-xs font-light text-gray-400">V1.0</span></h1>
-        <button id="logoutBtn" class="bg-red-500/20 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/50 px-4 py-2 rounded-lg transition text-sm font-bold">تسجيل خروج</button>
+    <nav class="glass p-4 border-b border-gray-700 flex justify-between items-center sticky top-0 z-50">
+        <h1 class="text-xl font-bold text-blue-400 tracking-tighter">TRACKER CONTROL PANEL</h1>
+        <button id="logoutBtn" class="bg-red-500/20 hover:bg-red-600 text-red-500 hover:text-white px-4 py-2 rounded-lg text-xs font-bold transition">خروج</button>
     </nav>
 
-    <div class="container mx-auto p-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <div class="bg-gray-900/60 backdrop-blur-md p-6 rounded-xl border border-gray-700 shadow-xl">
-                <p class="text-gray-400 text-sm">حالة المراقبة</p>
-                <h3 class="text-2xl font-bold text-green-400">Active</h3>
-            </div>
-            <div class="bg-gray-900/60 backdrop-blur-md p-6 rounded-xl border border-gray-700 shadow-xl">
-                <p class="text-gray-400 text-sm">إجمالي السجلات</p>
-                <h3 id="total-logs" class="text-2xl font-bold text-blue-400">0</h3>
-            </div>
-            <div class="bg-gray-900/60 backdrop-blur-md p-6 rounded-xl border border-gray-700 shadow-xl">
-                <p class="text-gray-400 text-sm">التحديث القادم</p>
-                <h3 class="text-2xl font-bold text-purple-400">Real-time</h3>
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <div class="glass p-6 rounded-2xl border border-blue-500/20 mb-8">
+            <h2 class="text-lg font-bold mb-4 text-blue-300">إضافة هدف مراقبة جديد</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <select id="platform-select" class="bg-gray-800 border border-gray-700 p-3 rounded-lg outline-none">
+                    <option value="WhatsApp">WhatsApp</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="TikTok">TikTok</option>
+                    <option value="Instagram">Instagram</option>
+                </select>
+                <input type="text" id="target-name" placeholder="اسم الشخص / الهدف" class="bg-gray-800 border border-gray-700 p-3 rounded-lg outline-none">
+                <input type="text" id="target-link" placeholder="رابط البروفايل أو الرقم" class="bg-gray-800 border border-gray-700 p-3 rounded-lg outline-none md:col-span-1" dir="ltr">
+                <button id="addLogBtn" class="bg-blue-600 hover:bg-blue-700 font-bold p-3 rounded-lg transition transform active:scale-95">بدء المراقبة</button>
             </div>
         </div>
 
-        <div class="bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-2xl border border-gray-700 overflow-hidden">
-            <div class="p-5 border-b border-gray-700 flex justify-between items-center bg-gray-800/50">
-                <h2 class="text-lg font-bold text-gray-200">سجل النشاط المجمع</h2>
-                <span class="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded">Live Data</span>
+        <div class="glass rounded-2xl border border-gray-700 overflow-hidden shadow-2xl">
+            <div class="p-4 border-b border-gray-700 bg-white/5 flex justify-between items-center">
+                <h2 class="font-bold">سجل النشاط المباشر</h2>
+                <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    <span id="total-logs" class="text-sm text-gray-400">0 سجل</span>
+                </div>
             </div>
             <div class="overflow-x-auto">
                 <table class="w-full text-right">
-                    <thead class="bg-gray-800/80 text-gray-400 text-sm uppercase">
+                    <thead class="bg-black/30 text-gray-400 text-xs uppercase">
                         <tr>
                             <th class="p-4">المنصة</th>
                             <th class="p-4">الهدف</th>
-                            <th class="p-4">النشاط</th>
-                            <th class="p-4">الوقت والتاريخ</th>
+                            <th class="p-4">الحالة</th>
+                            <th class="p-4">التوقيت</th>
                         </tr>
                     </thead>
-                    <tbody id="logs-table-body" class="divide-y divide-gray-800">
+                    <tbody id="logs-table-body" class="text-sm">
                         </tbody>
                 </table>
             </div>
