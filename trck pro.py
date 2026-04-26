@@ -18,7 +18,7 @@ def on_snapshot(col_snapshot, changes, read_time):
     for change in changes:
         if change.type.name in ['ADDED', 'MODIFIED']:
             data = change.document.to_dict()
-            if data.get('action') == "بدء مراقبة":
+            if "بدء مراقبة" in data.get('action', ''):
                 # هنا منطق السيلينيوم للفحص
                 change.document.reference.update({"action": "متصل الآن 🟢"})
 
